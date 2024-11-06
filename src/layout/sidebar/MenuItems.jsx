@@ -40,9 +40,9 @@ import {
     },
     {
       id: uniqueId(),
-      title: "Shadow",
+      title: "TableNew",
       icon: IconCopy,
-      href: "/utilities/shadow",
+      href: "/table-one",
     },
     {
       navlabel: true,

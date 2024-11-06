@@ -9,6 +9,7 @@ import ForgetPassword from "./pages/auth/ForgetPassword";
 import Form from "./pages/dashboard/Form";
 import Profile from "./pages/profile/Profile";
 import ChangePassword from "./pages/profile/ChangePassword";
+import TableOne from "./pages/dashboard/TableOne";
 
 const App = () => {
   return (
@@ -17,16 +18,17 @@ const App = () => {
         <Route path="/" element={<SignIn />} />
         <Route path="/register" element={<SIgnUp />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
-        <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/maintenance" element={<Maintenance />} />
         <Route
           path="/table"
-          element={<ProtectedRoute element={<Registration />} />}
+          element={<Registration />}
         />
         <Route path="/form" element={<Form />} />
+        <Route path="/table-one" element={<TableOne />} />
         <Route
           path="/profile"
-          element={<ProtectedRoute element={<Profile />} />}
+          element={<Profile />}
         />
         <Route
           path="/change-password"
