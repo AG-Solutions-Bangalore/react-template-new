@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import NavItem from "./NavItem";
 import NavGroup from "./NavGroup/NavGroup";
 
-const SidebarItems = ({ toggleMobileSidebar }) => {
+const SidebarItems = ({ toggleMobileSidebar, isCollapsed }) => {
   const location = useLocation();
   const pathDirect = location.pathname;
 
@@ -16,7 +16,7 @@ const SidebarItems = ({ toggleMobileSidebar }) => {
         {Menuitems.map((item) => {
           // {/********SubHeader**********/}
           if (item.subheader) {
-            return <NavGroup item={item} key={item.subheader} />;
+            return <NavGroup item={item} key={item.subheader} isCollapsed={isCollapsed} />;
 
             // {/********If Sub Menu**********/}
             /* eslint no-else-return: "off" */
@@ -25,8 +25,9 @@ const SidebarItems = ({ toggleMobileSidebar }) => {
               <NavItem
                 item={item}
                 key={item.id}
-                pathDirect={pathDirect}
+                pathDirect= {pathDirect}
                 onClick={toggleMobileSidebar}
+                isCollapsed={isCollapsed}
               />
             );
           }

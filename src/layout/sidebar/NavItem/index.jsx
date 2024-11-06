@@ -21,6 +21,7 @@ export default function NavItem({
   pathDirect,
   hideMenu,
   onClick,
+  isCollapsed,
 }) {
   const Icon = item.icon;
   const theme = useTheme();
@@ -159,7 +160,12 @@ export default function NavItem({
             {itemIcon}
           </ListItemIcon>
           <ListItemText>
-            {hideMenu ? "" : <>{`${item?.title}`}</>}
+            {/* {hideMenu ? "" : <>{`${item?.title}`}</>} */}
+            {!isCollapsed ? (
+            hideMenu ? null : <>{item?.title}</>
+          ) : (
+            ""
+          )}
             <br />
             {item?.subtitle ? (
               <Typography variant="caption">

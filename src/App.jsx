@@ -10,6 +10,7 @@ import Form from "./pages/dashboard/Form";
 import Profile from "./pages/profile/Profile";
 import ChangePassword from "./pages/profile/ChangePassword";
 import TableOne from "./pages/dashboard/TableOne";
+import FormView from "./pages/dashboard/FormView";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         />
         <Route path="/form" element={<Form />} />
         <Route path="/table-one" element={<TableOne />} />
+        <Route path="/formview" element={<FormView />} />
         <Route
           path="/profile"
           element={<Profile />}

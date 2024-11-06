@@ -1,81 +1,157 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../layout/Layout";
-import {
-  Card,
-  CardBody,
-  Typography,
-  CardHeader,
-} from "@material-tailwind/react";
+
+
 
 const Form = () => {
+  const [formData, setFormData] = useState({
+    successInput: '',
+    errorInput: '',
+    errorTextInput: '',
+    gender: '',
+    country: '',
+    selectedOption: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const countries = [
+    { value: 'india', label: 'India' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'srilanka', label: 'Sri Lanka' }
+  ];
+
+  const genders = [
+    { value: 'female', label: 'Female' },
+    { value: 'male', label: 'Male' },
+    { value: 'other', label: 'Other' }
+  ];
+
+  const FormLabel = ({ children, required }) => (
+    <label className="block text-sm font-semibold text-gray-700 mb-1 mt-6">
+      {children}
+      {required && <span className="text-red-500 ml-1">*</span>}
+    </label>
+  );
   return (
     <Layout>
-      <div className="mt-12 mb-8 flex flex-col gap-12">
-        <Card>
-          <CardHeader variant="gradient" color="white" className="mb-8 p-6">
-            <Typography variant="h6" color="black">
-              Form
-            </Typography>
-          </CardHeader>
-          <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
-            <form className="px-8 pt-6 pb-8 w-full max-w-lg">
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="name"
-                >
-                  Name
-                </label>
-                <input
-                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  id="name"
-                  type="text"
-                  placeholder="Enter your name"
-                />
-              </div>
+   
+      <div className="w-full ">
+        <form className="bg-white shadow-md rounded-lg p-6 ">
+          {/* Success Input */}
+          <div>
+            <FormLabel required>Success Input</FormLabel>
+            <input
+              type="text"
+              name="successInput"
+              value={formData.successInput}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-2xl focus:outline-none focus:ring-1 focus:ring-gray-500 border-green-500"
+              required
+            />
+          </div>
 
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="email"
-                >
-                  Email
-                </label>
-                <input
-                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  id="email"
-                  type="email"
-                  placeholder="Enter your email"
-                />
-              </div>
+          {/* Error Input */}
+          <div>
+            <FormLabel required>Error Input</FormLabel>
+            <input
+              type="text"
+              name="errorInput"
+              value={formData.errorInput}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-2xl focus:outline-none focus:ring-1 focus:ring-red-500 border-red-500"
+              required
+            />
+          </div>
 
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="message"
-                >
-                  Message
-                </label>
-                <textarea
-                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  id="message"
-                  placeholder="Your message"
-                  rows="5"
-                />
-              </div>
+          {/* Input with Error Text */}
+          <div>
+            <FormLabel required>Input with Error Text</FormLabel>
+            <input
+              type="text"
+              name="errorTextInput"
+              value={formData.errorTextInput}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-2xl focus:outline-none focus:ring-1 focus:ring-red-500 border-red-500"
+              required
+            />
+            <p className="mt-1 text-sm text-red-600">Incorrect entry.</p>
+          </div>
 
-              <div className="flex items-center justify-between">
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="button"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </CardBody>
-        </Card>
+          {/* Gender Select */}
+          <div>
+            <FormLabel>Gender</FormLabel>
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-2xl focus:outline-none focus:ring-1 focus:ring-blue-500 border-gray-300"
+            >
+              <option value="">Select gender</option>
+              {genders.map(gender => (
+                <option key={gender.value} value={gender.value}>
+                  {gender.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Country Select */}
+          <div>
+            <FormLabel>Country</FormLabel>
+            <select
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-2xl focus:outline-none focus:ring-1 focus:ring-blue-500 border-gray-300"
+            >
+              <option value="">Select country</option>
+              {countries.map(country => (
+                <option key={country.value} value={country.value}>
+                  {country.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Radio Options */}
+          <div>
+            <FormLabel>Options</FormLabel>
+            <div className="space-y-2">
+              {['option1', 'option2', 'option3'].map((option) => (
+                <label key={option} className="flex items-center space-x-2">
+                  <input
+                    type="radio"
+                    name="selectedOption"
+                    value={option}
+                    checked={formData.selectedOption === option}
+                    onChange={handleChange}
+                    className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  />
+                  <span className="text-sm text-gray-700">
+                    {option.charAt(0).toUpperCase() + option.slice(1)}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-24 mt-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded-3xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Submit
+          </button>
+        </form>
       </div>
+    
     </Layout>
   );
 };

@@ -2,6 +2,7 @@ import { useMediaQuery, Box, Drawer } from "@mui/material";
 import SidebarItems from "./SidebarItems";
 import { Upgrade } from "./Upgrade";
 import Logo from "../shared/logo/Logo";
+import { useState } from "react";
 
 
 
@@ -9,10 +10,15 @@ const Sidebar = ({
   isMobileSidebarOpen,
   onSidebarClose,
   isSidebarOpen,
+  isCollapsed
 }) => {
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  
+  // const sidebarWidth = "270px"; 
+  const sidebarWidth = isCollapsed ? "100px" : "270px";
 
-  const sidebarWidth = "270px";
+  const sidebarWidthMobile = '270px'
+
 
   if (lgUp) {
     return (
@@ -59,16 +65,16 @@ const Sidebar = ({
             {/* ------------------------------------------- */}
             {/* Logo */}
             {/* ------------------------------------------- */}
-            <Box px={3}  py={2}>
+            <Box px={2} pt={2}  >
 
-              <Logo />
+              <Logo isCollapsed = {isCollapsed} />
             </Box>
             <Box>
               {/* ------------------------------------------- */}
               {/* Sidebar Items */}
               {/* ------------------------------------------- */}
-              <SidebarItems />
-              <Upgrade />
+              <SidebarItems isCollapsed={isCollapsed} />
+              <Upgrade isCollapsed={isCollapsed} />
             </Box>
           </Box>
         </Drawer>
@@ -84,7 +90,7 @@ const Sidebar = ({
       variant="temporary"
       PaperProps={{
         sx: {
-          width: sidebarWidth,
+          width: sidebarWidthMobile,
           boxShadow: (theme) => theme.shadows[8],
         },
       }}

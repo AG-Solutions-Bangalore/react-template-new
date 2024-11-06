@@ -158,10 +158,9 @@ const Registration = () => {
   ];
 
   const options = {
-    selectableRows: "none",
+    // selectableRows: "none",
     filterType: "textField",
     selectableRows: false,
-
     elevation: 0,
     responsive: "standard",
     viewColumns: true,
@@ -189,24 +188,24 @@ const Registration = () => {
   return (
     <Layout>
         <ThemeProvider theme={darkTheme}>
-        <div className=" flex justify-between gap-2 bg-white p-4 mb-4 rounded-lg">
-          <h1 className="border-b-2 border-dashed border-orange-800">Donor List</h1>
+        <div className=" flex justify-between gap-2 bg-white p-4 mb-4 rounded-lg shadow-md">
+          <h1 className="border-b-2  font-[400] border-dashed border-orange-800">Donor List</h1>
          <div className="flex gap-2">
          <Link
             to="/add-indivisual"
-            className="btn btn-primary text-center text-xs md:text-right text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md"
+            className=" text-center text-sm font-[400 ] md:text-right text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md"
           >
             + Individual
           </Link>
           <Link
             to="/add-company"
-            className="btn btn-primary text-center text-xs md:text-right text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md"
+            className=" text-center  text-sm font-[400 ] md:text-right text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md"
           >
             + Company
           </Link>
          </div>
         </div>
-       <div >
+       <div className="shadow-md" >
         <MUIDataTable
           // title={'Donor List'}
           data={donorData ? donorData : []}

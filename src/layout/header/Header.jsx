@@ -13,13 +13,19 @@ import PropTypes from "prop-types";
 
 // components
 import Profile from "./Profile";
-import { IconBellRinging, IconMenu } from "@tabler/icons-react";
+import {
+  IconBellRinging,
+  IconInfoOctagon,
+  IconMenu,
+  IconMenuDeep,
+} from "@tabler/icons-react";
+import { IconInfoSquareRounded } from "@tabler/icons-react";
 
 // interface ItemType {
 //   toggleMobileSidebar: (event: React.MouseEvent<HTMLElement>) => void;
 // }
 
-const Header = ({ toggleMobileSidebar }) => {
+const Header = ({ toggleMobileSidebar, toggleSidebar }) => {
   // const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   // const lgDown = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
@@ -54,6 +60,19 @@ const Header = ({ toggleMobileSidebar }) => {
         >
           <IconMenu width="20" height="20" />
         </IconButton>
+        <IconButton
+          color="inherit"
+          aria-label="menu"
+          onClick={toggleSidebar}
+          sx={{
+            display: {
+              lg: "inline",
+              xs: "none",
+            },
+          }}
+        >
+          <IconMenuDeep width="20" height="20" />
+        </IconButton>
 
         <IconButton
           size="large"
@@ -68,24 +87,9 @@ const Header = ({ toggleMobileSidebar }) => {
         </IconButton>
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
-          <Box
-            sx={{
-              display: {
-                xs: "none",
-                sm: "block",
-              },
-            }}
-          >
-            <Button
-              variant="contained"
-              disableElevation
-              color="primary"
-              target="_blank"
-              href="https://www.wrappixel.com/templates/spike-nextjs-admin-template/"
-            >
-              Upgrade to Pro
-            </Button>
-          </Box>
+          <IconButton color="inherit" aria-label="menu">
+            <IconInfoOctagon height={20} width={20} />
+          </IconButton>
           <Profile />
         </Stack>
       </ToolbarStyled>

@@ -23,6 +23,11 @@ const PageWrapper = styled("div")(() => ({
 const Layout = ({ children }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed); // Toggle sidebar collapsed state
+  };
   return (
     <MainWrapper className="mainwrapper  bg-[#F0F5F9]">
       {/* ------------------------------------------- */}
@@ -32,6 +37,7 @@ const Layout = ({ children }) => {
         isSidebarOpen={isSidebarOpen}
         isMobileSidebarOpen={isMobileSidebarOpen}
         onSidebarClose={() => setMobileSidebarOpen(false)}
+        isCollapsed={isCollapsed}
       />
       {/* ------------------------------------------- */}
       {/* Main Wrapper */}
@@ -42,13 +48,13 @@ const Layout = ({ children }) => {
         {/* ------------------------------------------- */}
         <Container
           sx={{
-            maxWidth: "1300px !important",
+            maxWidth: "1400px !important",
           }}
         >
           {/* ------------------------------------------- */}
           {/* Header */}
           {/* ------------------------------------------- */}
-          <Header toggleMobileSidebar={() => setMobileSidebarOpen(true)} />
+          <Header toggleSidebar={toggleSidebar} toggleMobileSidebar={() => setMobileSidebarOpen(true)} />
           {/* ------------------------------------------- */}
           {/* Page Route */}
           {/* ------------------------------------------- */}

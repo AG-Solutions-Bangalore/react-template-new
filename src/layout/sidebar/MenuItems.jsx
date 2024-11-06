@@ -45,6 +45,12 @@ import {
       href: "/table-one",
     },
     {
+      id: uniqueId(),
+      title: "FormView",
+      icon: IconCopy,
+      href: "/formview",
+    },
+    {
       navlabel: true,
       subheader: "Auth",
     },

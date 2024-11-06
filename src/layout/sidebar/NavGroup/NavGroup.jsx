@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 // mui imports
 import { ListSubheader, styled } from '@mui/material';
+import { IconDots } from '@tabler/icons-react';
 
 // type NavGroup = {
 //   navlabel?: boolean;
@@ -11,7 +12,7 @@ import { ListSubheader, styled } from '@mui/material';
 //   item: NavGroup;
 // }
 
-const NavGroup = ({ item }) => {
+const NavGroup = ({ item,isCollapsed }) => {
   const ListSubheaderStyle = styled((props) => <ListSubheader disableSticky {...props} />)(
     ({ theme }) => ({
       ...theme.typography.overline,
@@ -24,7 +25,18 @@ const NavGroup = ({ item }) => {
     }),
   );
   return (
-    <ListSubheaderStyle>{item.subheader}</ListSubheaderStyle>
+    <ListSubheaderStyle> 
+    
+    
+    {!isCollapsed ? (
+           <>{item?.subheader}</>
+          ) : (
+            <>
+            <IconDots className='w-5 h-5 animate-pulse'/>
+            </>
+          )}
+    
+     </ListSubheaderStyle>
   );
 };
 

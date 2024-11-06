@@ -42,6 +42,7 @@ const AppProvider = ({ children }) => {
           currentPath === "/form" ||
           currentPath === "/profile" ||
           currentPath === "/table-one" ||
+          currentPath === "/formview" ||
           currentPath === "/change-password"
         ) {
           navigate(currentPath);
